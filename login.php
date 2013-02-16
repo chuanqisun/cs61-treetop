@@ -13,8 +13,8 @@
 		if (isset($_POST['submit'])){
 
 			//connect to database
-			$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL database');
-			mysql_select_db(DB_NAME, $dbc);
+			$dbc=mysql_connect("sunapee.cs.dartmouth.edu","evenstar","testpassword") or die('Error connecting to MySQL database');
+			mysql_select_db("evenstar_db", $dbc);
 			//extract data from the form
 			$u_name=$_POST['u_name'];
 			$u_pass=$_POST['u_pass'];
