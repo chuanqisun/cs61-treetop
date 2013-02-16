@@ -18,8 +18,8 @@
 	if (isset($_SESSION['u_id'])){
 
 		require_once('connectvars.php');
-		$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL Database');
-
+		$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL database');
+		$db_selected=mysql_select_db(DB_NAME, $dbc) or die ('Can\'t use database');
 
 
 		$query="SELECT g_name, g_expression_count, g_update_time FROM genes ORDER BY g_expression_count DESC LIMIT 10";
