@@ -18,14 +18,15 @@
 			if (!$db_selected) {
 			    die ('Can\'t use foo : ' . mysql_error());
 			}
-			//extract data from the form
-			$username=$_POST['username'];
-			$password=$_POST['password'];
-
+			
 			//This stops SQL Injection in GET vars 
 			foreach ($_POST as $key => $value) { 
 				$_POST[$key] = mysql_real_escape_string(trim($value)); 
 			} 
+			
+			//extract data from the form
+			$username=$_POST['username'];
+			$password=$_POST['password'];
 
 			if (!empty($username) && !empty($password)){
 				echo '<p class=error">'.$username.'</p>';
