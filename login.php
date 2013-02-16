@@ -51,8 +51,8 @@
 					setcookie('account_type', $row['account_type'], time() + (60*60*24*30));
 				    	
 				    echo 'all set';	
-					//$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
-					//header('Location: ' . $home_url);
+					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
+					header('Location: ' . $home_url);
 					
 				}
 				else{
