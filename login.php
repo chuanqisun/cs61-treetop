@@ -23,8 +23,8 @@
 			$password=$_POST['password'];
 
 			//This stops SQL Injection in GET vars 
-			foreach ($_GET as $key => $value) { 
-				$_GET[$key] = mysql_real_escape_string($value); 
+			foreach ($_POST as $key => $value) { 
+				$_POST[$key] = mysql_real_escape_string(trim($value)); 
 			} 
 
 			if (!empty($username) && !empty($password)){
