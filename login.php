@@ -29,22 +29,20 @@
 			$password=$_POST['password'];
 
 			if (!empty($username) && !empty($password)){
-				echo '<p class=error">'.$username.'</p>';
-				echo '<p class=error">'.$password.'</p>';
-				echo '<p class=error">'.sha1($password).'</p>';
-				$query="SELECT user_id, username FROM account WHERE username='$username' AND password='".sha1($password)."';";
+
+				$query="SELECT user_id, username,account_type FROM account WHERE username='$username' AND password='".sha1($password)."';";
 				$data=mysql_query($query);
-				echo '<p class=error">'.$query.'</p>';
-				echo '<p class=error">'.$data.'</p>';
 
 				if (mysql_num_rows($data)==1) {
 					$row=mysql_fetch_array($data);
 					$_SESSION['user_id'] = $row['user_id']; 
 					$_SESSION['username'] = $row['username'];
-
+					$_SESSION['account_type'] = $row['account_type'];
+					
 					setcookie('user_id', $row['user_id'], time() + (60*60*24*30)); 
 					setcookie('username', $row['username'], time() + (60*60*24*30));
-
+					setcookie('account_type', $row['account_type'], time() + (60*60*24*30));
+					
 					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
 					header('Location: ' . $home_url);
 					
