@@ -15,5 +15,5 @@
 <body>
 
 <?php
-	echo '<h3>Treetop Airline - ' . $page_title . '</h3>';
+	echo '<h3>G - ' . $page_title . '</h3>';
 ?>

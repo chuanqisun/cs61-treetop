@@ -1,8 +1,8 @@
 <?php
 
 	//Define Database Variables
-	define('DB_HOST', 'sunapee.cs.dartmouth.edu');
-	define('DB_USER', 'evenstar');
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'g_user');
 	define('DB_PASSWORD', 'testpassword');
-	define('DB_NAME', 'evenstar_db');
+	define('DB_NAME', 'g_prototype');
 ?>
