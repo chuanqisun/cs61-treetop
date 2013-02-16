@@ -14,7 +14,10 @@
 
 			//connect to database
 			$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL database');
-			mysql_select_db(DB_NAME, $dbc);
+			$de_selected=mysql_select_db(DB_NAME, $dbc);
+			if (!$db_selected) {
+			    die ('Can\'t use foo : ' . mysql_error());
+			}
 			//extract data from the form
 			$username=$_POST['username'];
 			$password=$_POST['password'];
