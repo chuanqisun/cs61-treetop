@@ -6,7 +6,7 @@
 		echo ' | ';
 		echo '<a href="reservation.php">reservation</a>';
 		echo ' | ';
-		echo '<p>welcome'.$username.', <a href="logout.php">logout('.$_SESSION['u_name'].')</a></p>';
+		echo 'welcome'.$_SESSION['username'].', <a href="logout.php">logout</a>';
 	}
 	else{
 		echo '<a href="login.php">login</a>';
