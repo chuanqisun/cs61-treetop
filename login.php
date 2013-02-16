@@ -13,22 +13,22 @@
 		if (isset($_POST['submit'])){
 
 			//connect to database
-			$dbc=mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('Error connecting to MySQL database');
+			$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('Error connecting to MySQL database');
 	
 			//extract data from the form
 			$u_name=$_POST['u_name'];
 			$u_pass=$_POST['u_pass'];
 
 			//sanitize ---------this doesn't work--------------
-			$username=mysqli_real_escape_string($dbc, trim($username));
-			$password=mysqli_real_escape_string($dbc, trim($password));
+			$username=mysql_real_escape_string($dbc, trim($username));
+			$password=mysql_real_escape_string($dbc, trim($password));
 
 			if (!empty($u_name) && !empty($u_pass)){
 				$query="SELECT u_id, u_name FROM users WHERE u_name='$u_name' AND u_pass=SHA('$u_pass')";
-				$data=mysqli_query($dbc, $query);
+				$data=mysql_query($dbc, $query);
 
-				if (mysqli_num_rows($data)==1) {
-					$row=mysqli_fetch_array($data);
+				if (mysql_num_rows($data)==1) {
+					$row=mysql_fetch_array($data);
 					$_SESSION['u_id'] = $row['u_id']; 
 					$_SESSION['u_name'] = $row['u_name'];
 
