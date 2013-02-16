@@ -2,7 +2,6 @@
 	  
 	//start session
 	require_once('startsession.php');
-    echo 'good session';    
 	//Insert header
 	$page_title='Home';
 	require_once('header.php');

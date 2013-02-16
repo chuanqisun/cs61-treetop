@@ -1,6 +1,7 @@
 <?php
 	session_start();
 
+    echo 'good session';    
 	//auto re-login by cookie
 	if(!isset($_SESSION['user_id'])){
 		if(isset($_COOKIE['user_id'])){
