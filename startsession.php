@@ -7,6 +7,7 @@
 			$_SESSION['u_id']=$_COOKIE['u_id'];
 			$_SESSION['u_name']=$_COOKIE['u_name'];
 			$_SESSION['account_type'] = $_COOKIE['account_type'];
+        }
         if (isset($_COOKIE['passenger_id']){
 		    $_SESSION['passenger_id'] = $_COOKIE['passenger_id']; 
         }
