@@ -22,9 +22,10 @@
 			$username=$_POST['username'];
 			$password=$_POST['password'];
 
-			//sanitize ---------this doesn't work--------------
-			$username=mysql_real_escape_string(trim($username));
-			$password=mysql_real_escape_string(trim($password));
+			//This stops SQL Injection in GET vars 
+			foreach ($_GET as $key => $value) { 
+				$_GET[$key] = mysql_real_escape_string($value); 
+			} 
 
 			if (!empty($username) && !empty($password)){
 				echo '<p class=error">'.$username.'</p>';
