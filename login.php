@@ -14,12 +14,9 @@
 
 			//connect to database
 			$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL database');
-			$db_selected=mysql_select_db(DB_NAME, $dbc);
-			if (!$db_selected) {
-			    die ('Can\'t use foo : ' . mysql_error());
-			}
+			$db_selected=mysql_select_db(DB_NAME, $dbc) or die('Can\'t use datebase');
 			
-			//This stops SQL Injection in GET vars 
+			//This stops SQL Injection 
 			foreach ($_POST as $key => $value) { 
 				$_POST[$key] = mysql_real_escape_string(trim($value)); 
 			} 
