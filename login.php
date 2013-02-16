@@ -36,20 +36,22 @@
 				if (mysql_num_rows($data)==1) {
 					$row=mysql_fetch_array($data);
 					$_SESSION['user_id'] = $row['user_id']; 
-					$_SESSION['username'] = $row['username'];
-                    if (!empty($row['passenger_id'])) {
-                        echo 'not empty passenger_id';
-                    }
-					$_SESSION['passenger_id'] = $row['passenger_id']; 
-					$_SESSION['account_type'] = $row['account_type'];
-					
 					setcookie('user_id', $row['user_id'], time() + (60*60*24*30)); 
+
+					$_SESSION['username'] = $row['username'];
 					setcookie('username', $row['username'], time() + (60*60*24*30));
-					setcookie('passenger_id', $row['passenger_id'], time() + (60*60*24*30)); 
+
+                    if (!empty($row['passenger_id'])) {
+					    $_SESSION['passenger_id'] = $row['passenger_id']; 
+					    setcookie('passenger_id', $row['passenger_id'], time() + (60*60*24*30)); 
+                    }
+
+					$_SESSION['account_type'] = $row['account_type'];
 					setcookie('account_type', $row['account_type'], time() + (60*60*24*30));
 					
+					
 					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
-					//header('Location: ' . $home_url);
+					header('Location: ' . $home_url);
 					
 				}
 				else{
@@ -66,10 +68,6 @@
 	//if login failed
 	if (empty($_SESSION['user_id'])) {
 		echo '<p class=error">'.$error_msg.'</p>';
-	}
-	//if login success
-	else{
-		echo'<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>';
 	}
 ?>
 
