@@ -27,7 +27,7 @@
 
 			if (!empty($username) && !empty($password)){
 
-				$query="SELECT user_id, username,account_type,passenger_id FROM account WHERE username='$username' AND password='".sha1($password)."';";
+				$query="SELECT user_id, username, account_type, passenger_id FROM account WHERE username='$username' AND password='".sha1($password)."';";
 				$data=mysql_query($query);
 
 				if (mysql_num_rows($data)==1) {
@@ -47,8 +47,8 @@
 					setcookie('account_type', $row['account_type'], time() + (60*60*24*30));
 					
 					
-					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
-					header('Location: ' . $home_url);
+					//$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
+					//header('Location: ' . $home_url);
 					
 				}
 				else{
