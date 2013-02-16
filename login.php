@@ -9,34 +9,34 @@
 	$error_msg="";
 
 	//if not logged in
-	if (!isset($_SESSION['u_id'])){
+	if (!isset($_SESSION['user_id'])){
 		if (isset($_POST['submit'])){
 
 			//connect to database
-			$dbc=mysql_connect("sunapee.cs.dartmouth.edu","evenstar","testpassword") or die('Error connecting to MySQL database');
-			mysql_select_db("evenstar_db", $dbc);
+			$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL database');
+			mysql_select_db(DB_NAME, $dbc);
 			//extract data from the form
-			$u_name=$_POST['u_name'];
-			$u_pass=$_POST['u_pass'];
+			$username=$_POST['username'];
+			$password=$_POST['password'];
 
 			//sanitize ---------this doesn't work--------------
 			$username=mysql_real_escape_string($dbc, trim($username));
 			$password=mysql_real_escape_string($dbc, trim($password));
 
-			if (!empty($u_name) && !empty($u_pass)){
-				$query="SELECT u_id, u_name FROM users WHERE u_name='$u_name' AND u_pass=SHA('$u_pass')";
+			if (!empty($username) && !empty($password)){
+				$query="SELECT user_id, username FROM account WHERE username='$username' AND password=SHA('$password')";
 				$data=mysql_query($dbc, $query);
 
 				if (mysql_num_rows($data)==1) {
 					$row=mysql_fetch_array($data);
-					$_SESSION['u_id'] = $row['u_id']; 
-					$_SESSION['u_name'] = $row['u_name'];
+					$_SESSION['user_id'] = $row['user_id']; 
+					$_SESSION['username'] = $row['username'];
 
-					setcookie('u_id', $row['u_id'], time() + (60*60*24*30)); 
-					setcookie('u_name', $row['u_name'], time() + (60*60*24*30));
+					setcookie('user_id', $row['user_id'], time() + (60*60*24*30)); 
+					setcookie('username', $row['username'], time() + (60*60*24*30));
 
 					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
-					header('Location: ' . $home_url);
+					//header('Location: ' . $home_url);
 					
 				}
 				else{
@@ -51,12 +51,12 @@
 
 
 	//if login failed
-	if (empty($_SESSION['u_id'])) {
+	if (empty($_SESSION['user_id'])) {
 		echo '<p class=error">'.$error_msg.'</p>';
 	}
 	//if login success
 	else{
-		echo'<p class="login">You are logged in as ' . $_SESSION['u_name'] . '.</p>';
+		echo'<p class="login">You are logged in as ' . $_SESSION['username'] . '.</p>';
 	}
 ?>
 
@@ -64,9 +64,9 @@
 	<fieldset>
 		<legend>Log In</legend>
 		<label>Username:</label>
-		<input type="text" name="u_name" />
+		<input type="text" name="username" />
 		<label>Password:</label>
-		<input type="password" name="u_pass" />
+		<input type="password" name="password" />
 	</fieldset>
 	<input type="submit" value="Log In" name="submit" />
 </form>
