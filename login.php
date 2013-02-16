@@ -37,8 +37,8 @@
 					$row=mysql_fetch_array($data);
 					$_SESSION['user_id'] = $row['user_id']; 
 					$_SESSION['username'] = $row['username'];
-                    if (empty($row['passenger_id'])) {
-                        echo 'empty passenger_id';
+                    if (!empty($row['passenger_id'])) {
+                        echo 'not empty passenger_id';
                     }
 					$_SESSION['passenger_id'] = $row['passenger_id']; 
 					$_SESSION['account_type'] = $row['account_type'];
@@ -49,7 +49,7 @@
 					setcookie('account_type', $row['account_type'], time() + (60*60*24*30));
 					
 					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
-					header('Location: ' . $home_url);
+					//header('Location: ' . $home_url);
 					
 				}
 				else{
