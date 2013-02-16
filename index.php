@@ -7,7 +7,7 @@
 	require_once('header.php');
 
 	//Insert nabigation menu
-	require_once('navmenu.php');
+	//require_once('navmenu.php');
 ?>
 
 
