@@ -31,7 +31,7 @@
 				echo '<p class=error">'.$password.'</p>';
 				echo '<p class=error">'.sha1($password).'</p>';
 				$query="SELECT user_id, username FROM account WHERE username='$username' AND password='".sha1($password)."';";
-				$data=mysql_query($dbc, $query);
+				$data=mysql_query($query);
 				echo '<p class=error">'.$query.'</p>';
 				echo '<p class=error">'.$data.'</p>';
 
