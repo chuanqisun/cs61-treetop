@@ -24,7 +24,7 @@
 			//$password=mysql_real_escape_string($dbc, trim($password));
 
 			if (!empty($username) && !empty($password)){
-				$query="SELECT user_id, username FROM account WHERE username='$username' AND password=SHA('$password')";
+				$query="SELECT user_id, username FROM account WHERE username='$username' AND password=sha1('$password')";
 				$data=mysql_query($dbc, $query);
 
 				if (mysql_num_rows($data)==1) {
