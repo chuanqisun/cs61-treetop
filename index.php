@@ -1,7 +1,7 @@
 <?php
 	  
 	//start session
-	require_once('startsession.php');
+	//require_once('startsession.php');
 	//Insert header
 	$page_title='Home';
 	require_once('header.php');
