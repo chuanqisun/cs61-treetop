@@ -25,7 +25,7 @@
 
 			if (!empty($username) && !empty($password)){
 				echo '<p class=error">'.$username.'</p>';
-				echo '<p class=error">'.$passowrd.'</p>';
+				echo '<p class=error">'.$password.'</p>';
 				echo '<p class=error">'.sha1('$password').'</p>';
 				$query="SELECT user_id, username FROM account WHERE username='$username' AND password=sha1('$password')";
 				$data=mysql_query($dbc, $query);
