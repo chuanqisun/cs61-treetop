@@ -1,19 +1,12 @@
 <?php
-
 	//generating navigation bar
 	echo '<hr />';
-	if(isset($_SESSION['u_name'])){
-		echo '<a href="index.php">home</a>';
+	if(isset($_SESSION['username'])){
+		echo '<a href="schedule.php">schedule</a>';
 		echo ' | ';
-		echo '<a href="evolve.php">evolve</a>';
+		echo '<a href="reservation.php">reservation</a>';
 		echo ' | ';
-		echo '<a href="compare.php">compare</a>';
-		echo ' | ';
-		echo '<a href="explore.php">explore</a>';
-		echo ' | ';
-		echo '<a href="mygene.php">my genes</a>';
-		echo ' | ';
-		echo '<a href="logout.php">logout('.$_SESSION['u_name'].')</a>';
+		echo '<p>welcome'.$username.', <a href="logout.php">logout('.$_SESSION['u_name'].')</a></p>';
 	}
 	else{
 		echo '<a href="login.php">login</a>';
