@@ -16,8 +16,6 @@
 			$dbc=mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die('Error connecting to MySQL database');
 			$db_selected=mysql_select_db(DB_NAME, $dbc) or die('Can\'t use datebase');
 		    
-            echo 'connected';
-
 			//This stops SQL Injection 
 			foreach ($_POST as $key => $value) { 
 				$_POST[$key] = mysql_real_escape_string(trim($value)); 
@@ -29,7 +27,6 @@
 
 			if (!empty($username) && !empty($password)){
 
-                echo 'user+pass';
 
 				$query="SELECT user_id, username, account_type, passenger_id FROM account WHERE username='$username' AND password='".sha1($password)."';";
 				$data=mysql_query($query);
@@ -50,7 +47,6 @@
 					$_SESSION['account_type'] = $row['account_type'];
 					setcookie('account_type', $row['account_type'], time() + (60*60*24*30));
 				    	
-				    echo 'all set';	
 					$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
 					header('Location: ' . $home_url);
 					
