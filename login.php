@@ -23,8 +23,8 @@
 			$password=$_POST['password'];
 
 			//sanitize ---------this doesn't work--------------
-			//$username=mysql_real_escape_string($dbc, trim($username));
-			//$password=mysql_real_escape_string($dbc, trim($password));
+			$username=mysql_real_escape_string(trim($username));
+			$password=mysql_real_escape_string(trim($password));
 
 			if (!empty($username) && !empty($password)){
 				echo '<p class=error">'.$username.'</p>';
