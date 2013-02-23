@@ -2,17 +2,18 @@
 	  
 	//start session
 	require_once('startsession.php');
+	
 	//Insert header
 	$page_title='Home';
 	require_once('header.php');
 
 	//Insert nabigation menu
-	//require_once('navmenu.php');
+	require_once('navmenu.php');
 ?>
 
 
 <?php
-	//do something here
+	//show something here for the home page, if necessary.
 ?>
 
 <?php
@@ -20,3 +21,4 @@
 	//insert footer
 	require_once('footer.php');
 ?>
+

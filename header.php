@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <?php
-	echo '<title>G - ' . $page_title . '</title>';
+	echo '<title>Treetop - ' . $page_title . '</title>';
 ?>
 	<!--future stylesheet
 	<link rel="stylesheet" type="text/css" href="style.css" />
@@ -15,5 +15,6 @@
 <body>
 
 <?php
-	echo '<h3>G - ' . $page_title . '</h3>';
+	echo '<h3>Treetop - ' . $page_title . '</h3>';
 ?>
+

@@ -1,0 +1,55 @@
+Follow this guide to test the treetop database.
+Make sure you don't skip any steps. Some later steps may depend on the results of previous steps.
+
+Preparation:
+	1. open a browser, enable cookie and javascript, visit: http://www.cs.dartmouth.edu/~evenstar/treetop/
+
+As anonymous user:
+	2. click on schedule, the whole schedule is displayed.
+	3. put "Norwood" in the "From City" field, click on search, all scheduled flights from Norwood are be displayed. Note that TP1011 takes passenger from Norwood back to Norwood. It is a special program in which a Boeing 777 takes passengers to the stratosphere and offers weightlessness experience.
+	4. add "Wonju" to "To City" field, click on search again, all scheduled flights from Norwood to Wonju are displayed.
+	5. remove "Norwood" in the "From City" field, click on search, all scheduled flights to Wonju are displayed. 
+	6. click on login, username and password fileds are displayed. This concludes the testing as anonymous user.
+
+As passenger:
+	7. put "customer" in "username" filed, put "testpassword" in "password" field, click on Log In, a navigation bar with "logout(customer)" links indicates a login success.
+	8. test "schedule" as described in steps 2-5 
+	9. click on flight, all flights in the near future are displayed.
+	10. put "Norwood" in the "From City" field, click on search, all flights from Norwood are displayed, sorted by date in ascending order.
+	11. choose different "sorting" and "order by" criteria, click on search to see results properly sorted.
+	12. add "Wonju" to "To City" field, click on search, all flights from Norwood to Wonju are displayed.
+	13. add "2012-11-23" to "YYYY-MM-DD" filed, flight(s) from Norwood to Wonju on 2012-11-23 are displayed.
+	14. click on reserve, you are redirected to reservation page where all reservations are displayed sorted by flight date in descending order.
+	15. Notice that a reservation form is filled out for you, click on execute, the flight shows up in the table
+	16. Execute again, you get a warning saying you have already reserved the flight.
+	17. Choose "cancel" in the form, click on execute, the flight disappears from the table
+	18. Execute again, you get a warning saying you are not on that flight.
+	19. Choose "Reserve", execute again, we need this for later tests. 
+	20. Click on "logout(customer)", this concludes testing as passenger.
+
+As pure employee
+	21. login with "pureemployee" as username, and "testpassword" as password.
+	22. test "schedule" as described in steps 2-5 
+	23. Click on passenger, put "TP1001" and "2012-11-21" in the fileds, click on show, a list of all passengers on TP1001 on 2012-11-21 is displayed.
+	24. Remove flight date and click on show, an empty tabled is returned, as expected.
+	25. Click on statistics, put "2012-11-20" and "2012-11-26" in "From" and "To" fileds, click on show. The 5 most popular flights are displayed
+	26. Change From date to "2012-11-23", click on show, different results are displayed
+	26. Remove the date from the second filed, show again, empty table is returned, as expected.
+	27. Click on "logout(pureemployee)", this concludes testing as a pure employee.
+
+As an employee traveling as passenger
+	28. login with "employee" as username, and "testpassword" as password.
+	29. test "schedule" as described in steps 2-5
+	30. test "flight", "reservation" as described in steps 9-19, notice that you are assigned seat #2 when reserving flight TP1002, which is next to the seat number assigned to "customer".
+	31. test "passenger", "statistics" as decribed in steps 23-26
+	32. click on "logout(employee)", this concludes testing as employee traveling as passenger.
+
+Other cases:
+	33. click on login, click on Log In button without putting username and password, you get a warning saying you must enter username and password. Use "badusername" as username and "badpassword" as password, click on Log In, you get an "invalid username or password" error
+	34. login as "customer" again with "testpassword" as password.
+	35. click on reservation, put "TP1002", "2012-11-23" in the text fields, choose Cancel, and click on Execute. Seat #1 on TP1002 should be freed up.
+	36. logout and login as "employee", with "testpassword" as password.
+	37. click on reservation, put "TP1002", "2012-11-23" in the text fields, choose Cancel, and click on Execute. Seat #2 on TP1002 should be freed up.
+	38. Switch to "Reserve" and execute again, this time you get seat #1, which is from "customer"'s cancelation.
+	39. Now test an injection attack, go to schedule, put "' OR dep_city='Norwood" (exclude double quotes) in the From City, click on Search, nothing is returned. (Without sanitaion, flights from Norwood will be displayed)
+	40. Click on logout, This concludes the whole test.

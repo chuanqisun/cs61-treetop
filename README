@@ -1,0 +1,31 @@
+To setup:
+
+1. Make sure evenstar_db aldreay exists in your database
+2. To create database schema, run schema.sql, the previous schema will be overwritten
+3. To load test data, run data.sql, make sure you have already created the schema, the previous data will be overwritten
+4. Put all files in ./treetop to a php server accessible directory, for this homework, the files already exist in ~/public_html/treetop/ 
+
+To run:
+
+1. Make sure you have enabled cookie and javascript in your browser.
+2. Visit http://www.cs.dartmouth.edu/~evenstar/treetop/ (replace it with your diretory. For this homework, you may test the application from my home directory directly, in real life, but can deploy them anywhere you want, I use relative addresses all the time)
+
+About the database:
+
+1. The smallest available seat number is assigned to each new reservation. When some customer cancels his reservation, the seat becomes becomes available for reservation.
+
+2. Distinguish between flights and schedule. Schedule is where you look up possible routes and operation days. Flights is where you check whether a scheduled flight is actually happening, what status it has, and make a reservation on it.
+
+3. Clicking on "reserve" on the Flight page will send you to reservation page, but you have to "execute" to make a reservation actually happen
+
+4. Non-empty input fields are not enforced. If a user follows his intuition, he will natually find desired results. However, the system won't crash even if a user operates abnormally. For instance, it is intuitive to search all flights on 2013-2-21 while leaving departure and arrival city blank--the system handles this correctly. It is not intuitive to pull a passenger list without specifying the date--the system will simply return nothing without reporting an error.
+
+5. Since this is a database course, I kept the visual design minimal and focused on the correctness and functionality of data manipulation. Don't be disappointed if you don't see a fancy colorful UI.
+
+6. The application works differently for 4 types of users: 1) anonymous 2)passenger 3)pure employee 4) employee travels as passenger. They are allowed the following operations:
+1) Anonymous: login, check sechedule
+2) Passenger: 1) + logout, check flights, manage reservations
+3) Pure employee: 1) + logout, check passenger lists, check flight statistics
+4) Employee travels as passenger: 2) + 3)
+
+7. The application doesn't distinguish between "past flights" and "future reservations". They are both displayed as reservations. A past flight has a status "arrived", "departured", or "canceled". A future reservation has a status "on time", "delayed", or "canceled". A customer can also check the date to see if a flight is "past" or "future". 
